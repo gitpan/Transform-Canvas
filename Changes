@@ -1,0 +1,6 @@
+Revision history for Perl extension Transform::Canvas.
+
+0.00_01  Fri Sep 24 08:33:12 2004
+	- original version; created by h2xs 1.23 with options
+		-B -X -c -e -k -n Transform::Canvas
+
