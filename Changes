@@ -1,5 +1,8 @@
 Revision history for Perl extension Transform::Canvas.
 
+0.005 	Fri Feb 11 2004 16:15
+	Improved the dependency declarations for testing. The tests require the SVG module.
+
 0.004 	Fri Feb 11 2004 16:15
 	Updated the pod to reflect my appreciation of Adam Kennedy's criticism.
 	I was not pleased.

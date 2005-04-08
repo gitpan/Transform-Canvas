@@ -13,7 +13,7 @@ use Carp;
 # If you do not need this, moving things directly into @EXPORT or @EXPORT_OK
 # will save memory.
 
-our $VERSION = '0.004';
+our $VERSION = '0.005';
 $VERSION = eval $VERSION;    # see L<perlmodstyle>
 
 =head1 NAME

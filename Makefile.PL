@@ -5,7 +5,7 @@ use ExtUtils::MakeMaker;
 WriteMakefile(
     NAME              => 'Transform::Canvas',
     VERSION_FROM      => 'lib/Transform/Canvas.pm', # finds $VERSION
-    PREREQ_PM         => {Carp}, # e.g., Module::Name => 1.1
+    PREREQ_PM         => {Carp,SVG }, # e.g., Module::Name => 1.1
     ($] >= 5.005 ?     ## Add these new keywords supported since 5.005
       (ABSTRACT_FROM  => 'lib/Transform/Canvas.pm', # retrieve abstract from module
        AUTHOR         => 'Ronan Oger <ronan@roasp.com>') : ()),
