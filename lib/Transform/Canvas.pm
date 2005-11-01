@@ -1,6 +1,6 @@
 package Transform::Canvas;
 
-use 5.008;
+use 5.006;
 use strict;
 use warnings;
 use Carp;
@@ -13,7 +13,7 @@ use Carp;
 # If you do not need this, moving things directly into @EXPORT or @EXPORT_OK
 # will save memory.
 
-our $VERSION = '0.005';
+our $VERSION = '0.02';
 $VERSION = eval $VERSION;    # see L<perlmodstyle>
 
 =head1 NAME
@@ -41,7 +41,16 @@ The module allows for arbitrary 2-D transform mappings.
 
 =head1 Methods
 
-=head2 sub new (canvas => [x0 y0 x1 y1], data=>[x0 y0 x1 y1])
+=head2 new
+
+Module constructor.
+
+ #there are two ways to invoke this module
+ #one-step constructo
+ $t = Transform::Canvas->new (canvas => [x0 y0 x1 y1], data=>[x0 y0 x1 y1])
+ # or two-step connstructor
+ $t-> Transform::Canvas->new ();
+ $t->prepareMap (canvas => [x0 y0 x1 y1], data=>[x0 y0 x1 y1])
 
 generate the conversion object through which all data points will be passed.
 NB: svg drawings use the painter's model and use a coordinate system which
@@ -71,19 +80,20 @@ sub new ($;@) {
     $self->{_config_} = {};
 
     #define the mappings
-    $self->{_config_} = \%attrs;
+    if (%attrs) {
+        $self->{_config_} = \%attrs;
 
-    confess("Mising canvas data")
-      unless scalar( @{ $self->{_config_}->{canvas} } ) == 4;
-    confess("Mising data data")
-      unless scalar( @{ $self->{_config_}->{data} } ) == 4;
+        confess("Mising canvas data")
+          unless scalar( @{ $self->{_config_}->{canvas} } ) == 4;
+        confess("Mising data data")
+          unless scalar( @{ $self->{_config_}->{data} } ) == 4;
 
-    # establish defaults for unspecified attributes
-    bless $self, $class;
-    $self->initialize()
-      || croak("Failed to initialize Transform::Canvas object");
-    $self->prepareMap() || croak("Failed to prepare transformation map");
-
+        # establish defaults for unspecified attributes
+        bless $self, $class;
+        $self->initialize()
+          || croak("Failed to initialize Transform::Canvas object");
+        $self->prepareMap() || croak("Failed to prepare transformation map");
+    }
     return $self;
 }
 
@@ -91,7 +101,7 @@ sub initialize ($) {
     my $self = shift;
 }
 
-=head2 prepareMap
+=head2 prepareMap hash %args
 
 Prepare the transformation space for the conversions;
 Currently only handles linear transformations, but this is a perfect candidate
@@ -101,6 +111,11 @@ for non-spacial, non-cartesian transforms...
 
 sub prepareMap ($;@) {
     my $self = shift;
+    my %args = @_;
+
+    if (%args) {
+        $self->{_config_} = \%args;
+    }
 
     #scale factors
 
@@ -127,54 +142,56 @@ sub prepareMap ($;@) {
 
 }
 
-# helper methods which return the corners of the canvas and data windows
+# helper methods which return or set the corners of the canvas and data windows
 
-=head2 sub cx0
+=head2 sub cx0 [string $value]
 
-return the canvas x min value
+set and/or return the canvas x min value
 
-=head2 sub cx1
+=head2 sub cx1 [string $value]
 
-return the canvas x max value
+set and/or return the canvas x max value
 
-=head2 sub cy0
+=head2 sub cy0 [string $value]
 
-return the canvas y min value
+set and/or return return the canvas y min value
 
-=head2 sub cy1
+=head2 sub cy1 [string $value]
 
-return the canvas y max value
+set and/or return the canvas y max value
 
-=head2 sub dx0
+=head2 sub dx0 [string $value]
 
-return the data space x min value
+set and/or return the data space x min value
 
-=head2 sub dx1
+=head2 sub dx1  [string $value]
 
-return the data space x max value
+set and/or return the data space x max value
 
-=head2 sub dy0
+=head2 sub dy0  [string $value]
 
-return the data space y min value
+set and/or return the data space y min value
 
-=head2 sub dy1
+=head2 sub dy1 [string $value]
 
-return the data space y max value
-
+set and/or return the data space y max value.
 
 =cut 
 
 sub cx0 ($;$) {
     my $self = shift;
+    my $val  = shift;
+    $self->{_config_}->{canvas}->[0] = $val if defined $val;
     confess("canvas min x value not set")
       unless defined $self->{_config_}->{canvas}->[0];
 
     return $self->{_config_}->{canvas}->[0];
 }
 
-
 sub cx1 ($;$) {
     my $self = shift;
+    my $val  = shift;
+    $self->{_config_}->{canvas}->[2] = $val if defined $val;
     confess("canvas max x value not set")
       unless defined $self->{_config_}->{canvas}->[2];
     return $self->{_config_}->{canvas}->[2];
@@ -182,6 +199,8 @@ sub cx1 ($;$) {
 
 sub dx0 ($;$) {
     my $self = shift;
+    my $val  = shift;
+    $self->{_config_}->{data}->[0] = $val if defined $val;
     confess("data min x value not set")
       unless defined $self->{_config_}->{data}->[0];
     return $self->{_config_}->{data}->[0];
@@ -189,6 +208,8 @@ sub dx0 ($;$) {
 
 sub dx1 ($;$) {
     my $self = shift;
+    my $val  = shift;
+    $self->{_config_}->{data}->[2] = $val if defined $val;
     confess("data max x value not set")
       unless defined $self->{_config_}->{data}->[2];
     return $self->{_config_}->{data}->[2];
@@ -196,6 +217,8 @@ sub dx1 ($;$) {
 
 sub cy0 ($;$) {
     my $self = shift;
+    my $val  = shift;
+    $self->{_config_}->{canvas}->[1] = $val if defined $val;
     confess("canvas min y value not set")
       unless defined $self->{_config_}->{canvas}->[1];
     return $self->{_config_}->{canvas}->[1];
@@ -203,6 +226,8 @@ sub cy0 ($;$) {
 
 sub cy1 ($;$) {
     my $self = shift;
+    my $val  = shift;
+    $self->{_config_}->{canvas}->[3] = $val if defined $val;
     confess("canvas max y value not set")
       unless defined $self->{_config_}->{canvas}->[3];
     return $self->{_config_}->{canvas}->[3];
@@ -210,6 +235,8 @@ sub cy1 ($;$) {
 
 sub dy0 ($;$) {
     my $self = shift;
+    my $val  = shift;
+    $self->{_config_}->{data}->[1] = $val if defined $val;
     confess("datamin y value not set")
       unless defined $self->{_config_}->{data}->[1];
     return $self->{_config_}->{data}->[1];
@@ -217,6 +244,8 @@ sub dy0 ($;$) {
 
 sub dy1 ($;$) {
     my $self = shift;
+    my $val  = shift;
+    $self->{_config_}->{data}->[3] = $val if defined $val;
     confess("data max y value not set")
       unless defined $self->{_config_}->{data}->[3];
     return $self->{_config_}->{data}->[3];
@@ -294,6 +323,61 @@ sub mapY ($$) {
     } @$y;
     return $p_y[0] if scalar @p_y == 1;
     return ( \@p_y );
+}
+
+=head2 Max
+
+Find th of an array
+
+ my $x = $t->Max([1,2,3,4,5]);
+
+This utility needed a home and this seems like a convenient place to stick it
+
+=cut
+
+#subs Max, Min from:
+#https://lists.dulug.duke.edu/pipermail/dulug/2001-March/009326.html
+
+sub Max {
+
+    my $self = shift;
+
+    # takes an array ref - returns the max
+
+    my $list = shift;
+    my $max  = $list->[0];
+
+    #foreach (@$list) {
+    map { $max = $_ if ( $_ > $max ) } @$list;
+
+    #}
+
+    return ($max);
+}
+
+=head2 Max
+
+Find th of an array
+
+ my $x = $t->Max([1,2,3,4,5]);
+
+
+=cut
+
+sub Min {
+
+    # takes an array ref - returns the min
+    my $self = shift;
+    my $list = shift;
+    my $min  = $list->[0];
+
+    #foreach (@$list) {
+    map { $min = $_ if ( $_ < $min ) } @$list;
+
+    #$min = $_ if ( $_ < $min );
+    #}
+
+    return ($min);
 }
 
 =head1 SEE ALSO

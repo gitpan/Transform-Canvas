@@ -3,7 +3,7 @@
 
 #########################
 
-use Test::More tests => 30;
+use Test::More tests => 32;
 BEGIN { 
 	use_ok('Transform::Canvas'); 
 	use_ok('SVG'); 
@@ -45,6 +45,8 @@ my $c = $a->polygon(
 );
 
 open OUT,"> t/data/out.svg" || die("Unable to open file t/data/out.svg : $!");
+ok($t->Max([0,1,2,3,4,5,6,7,8,9,10]) == 10, 'Max: Find max of an array');
+ok($t->Min([0,1,2,3,4,5]) == 0, 'Min: Find min of an array');
 ok(print OUT $a->xmlify(),'serialize to disk');
 ok(close OUT,'close output file');
 
