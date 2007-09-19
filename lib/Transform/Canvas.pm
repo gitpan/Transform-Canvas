@@ -13,21 +13,29 @@ use Carp;
 # If you do not need this, moving things directly into @EXPORT or @EXPORT_OK
 # will save memory.
 
-our $VERSION = '0.02';
-$VERSION = eval $VERSION;    # see L<perlmodstyle>
+
 
 =head1 NAME
 
 Transform::Canvas - Perl extension for performing Coordinate transformation 
-operations from the cartesion to the canvas coordinate systems.
+operations from the cartesion to the traditional drawing-model canvas coordinate systems.
+
+=head2 VERSION
+
+VERSION 0.03 19 September, 2007
+
+
+=cut
+
+our $VERSION = 0.03;
 
 =head1 SYNOPSIS
 
   use Transform::Canvas;
-  #create a mapping transform for data from 
+  # create a mapping transform for data from 
   #x=-100,y=-100,x=100,y=100  to x=10,y=10,x=100,y=100
   $t = Transform::Canvas->new(canvas=>[10,10,100,100],data=>[-100,-100,100,100]);
-  #reate a arrays of x and y values
+  # create a arrays of x and y values
   $r_x = [-100,-10, 0, 20, 40, 60, 80, 100];
   $r_y = [-100,-10, 0, 20, 40, 60, 80, 100];
   #map the two arrays into the canvas data space
