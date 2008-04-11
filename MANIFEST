@@ -7,4 +7,5 @@ t/data/out.svg
 examples/01-simple-line.pl
 examples/02-graph.pl
 lib/Transform/Canvas.pm
+t/99_test_pod_coverage.t
 META.yml                                 Module meta-data (added by MakeMaker)
