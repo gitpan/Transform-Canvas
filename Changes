@@ -1,7 +1,17 @@
 Revision history for Perl extension Transform::Canvas.
 
+
+0.06    April 15, 2008
+	Improved tests
+
+
+0.05    April 14, 2008
+	Fixed Makefile.PL
+
+
 0.03    Wed, Sept 19, 2007
 	Fixed Makefile.PL
+
 0.02    Wed, Nov 01, 2005
 	Changed use statement to allow perl 5.6 to implement.
 	Added set/get support to the helper methods dx0 dx1 dy0 dy1 cx0 cx1 cy0 cy1

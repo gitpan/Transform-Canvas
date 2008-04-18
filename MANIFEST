@@ -9,3 +9,5 @@ examples/02-graph.pl
 lib/Transform/Canvas.pm
 t/99_test_pod_coverage.t
 META.yml                                 Module meta-data (added by MakeMaker)
+LICENSE
+t/98_all_pod.t

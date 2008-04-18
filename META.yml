@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:                Transform-Canvas
-version:             0.05
+version:             0.06
 abstract:            Perl extension for performing Coordinate transformation 
 license:             ~
 author:              
