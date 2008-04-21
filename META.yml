@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:                Transform-Canvas
-version:             0.08
+version:             0.09
 abstract:            Perl extension for performing Coordinate transformation 
 license:             ~
 author:              
@@ -10,7 +10,7 @@ distribution_type:   module
 requires:     
     Carp:                          0
     Data::Dumper:                  0
-    SVG:                           2.33
+    SVG::Parser:                   0.9
     Test::More:                    0
 meta-spec:
     url:     http://module-build.sourceforge.net/META-spec-v1.3.html

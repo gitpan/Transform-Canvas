@@ -11,7 +11,7 @@ WriteMakefile(
     PREREQ_PM => {
         'Test::More' => 0,
         'Carp' => 0,
-        'SVG' => 2.33,
+        'SVG::Parser' => 0.9,
         'Data::Dumper' => 0,
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
