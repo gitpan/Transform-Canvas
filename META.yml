@@ -1,11 +1,11 @@
 --- #YAML:1.0
 name:                Transform-Canvas
-version:             0.09
+version:             0.1
 abstract:            Perl extension for performing Coordinate transformation 
 license:             ~
 author:              
     - Ronan Oger <ronan@cpan.org>
-generated_by:        ExtUtils::MakeMaker version 6.44
+generated_by:        ExtUtils::MakeMaker version 6.42
 distribution_type:   module
 requires:     
     Carp:                          0
