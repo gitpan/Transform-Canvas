@@ -22,12 +22,12 @@ operations from the cartesion to the traditional drawing-model canvas coordinate
 
 =head2 VERSION
 
-VERSION 0.09 21 April, 2008
+VERSION 0.12 16 December, 2008
 
 
 =cut
 
-our $VERSION = 0.11;
+our $VERSION = 0.12;
 
 =head1 SYNOPSIS
 
