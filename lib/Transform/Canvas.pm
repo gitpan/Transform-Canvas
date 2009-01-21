@@ -14,7 +14,6 @@ use Carp;
 # will save memory.
 
 
-
 =head1 NAME
 
 Transform::Canvas - Perl extension for performing Coordinate transformation 
@@ -22,12 +21,11 @@ operations from the cartesion to the traditional drawing-model canvas coordinate
 
 =head2 VERSION
 
-VERSION 0.12 16 December, 2008
-
+VERSION 0.13 20 January, 2009
 
 =cut
 
-our $VERSION = 0.12;
+our $VERSION = 0.13;
 
 =head1 SYNOPSIS
 
