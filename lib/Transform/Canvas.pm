@@ -21,11 +21,11 @@ operations from the cartesion to the traditional drawing-model canvas coordinate
 
 =head2 VERSION
 
-VERSION 0.13 20 January, 2009
+VERSION 0.14 23 January, 2009
 
 =cut
 
-our $VERSION = 0.13;
+our $VERSION = 0.14;
 
 =head1 SYNOPSIS
 
@@ -96,14 +96,14 @@ sub new ($;@) {
 
         # establish defaults for unspecified attributes
         bless $self, $class;
-        $self->initialize()
+        $self->_initialize()
           || croak("Failed to initialize Transform::Canvas object");
         $self->prepareMap() || croak("Failed to prepare transformation map");
     }
     return $self;
 }
 
-sub initialize ($) {
+sub _initialize ($) {
     my $self = shift;
 }
 
@@ -361,7 +361,7 @@ sub Max {
     return ($max);
 }
 
-=head2 Max
+=head2 Min
 
 Find th of an array
 
@@ -392,7 +392,7 @@ SVG SVG::Parser SVG::DOM SVG::Element SVG::Graph SVG::Extension
 
 =head1 AUTHOR
 
-Ronan Oger, E<lt>ronan@roasp.comE<gt>
+Ronan Oger, E<lt>ronan@cpan.comE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
