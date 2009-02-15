@@ -21,11 +21,11 @@ operations from the cartesion to the traditional drawing-model canvas coordinate
 
 =head2 VERSION
 
-VERSION 0.14 23 January, 2009
+VERSION 0.14 15 Febuary, 2009
 
 =cut
 
-our $VERSION = 0.14;
+our $VERSION = 0.15;
 
 =head1 SYNOPSIS
 
@@ -396,22 +396,12 @@ Ronan Oger, E<lt>ronan@cpan.comE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2004 by Ronan Oger
+Copyright (C) 2004-2009 by Ronan Oger
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.8.3 or,
 at your option, any later version of Perl 5 you may have available.
 
-
-=head2 DEDICATION
-
-This module's POD is dedicated to Adam Kennedy. I have little patience for rudeness and ignorance. Adam seems to show a past and current talent for both.
-
-As a coder, he may have considered the emotional attachement people have with what they write. Although his review was fairly pointless and clearly so, this guy seems to make a habit of it. He needs to be kept accountable.
-
-If this moppet had shown the slightest decency and had dropped me an email about the issue (I'm not hard to find), I may have addressed his fairly trivial concerns. Instead he decided to throw a lasting comment in an inappropriate place.
-
-If anyone cares to see his review of this module, which he submitted without bothering to even try to use the module he criticized, have a look at the reviews for version 0.003.
 
 =cut
 
